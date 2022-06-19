@@ -9,6 +9,8 @@ import {Button} from "./task3/Button";
 import {HookUseState} from "./task4/HookUseState";
 import {NewFilter} from "./task5/NewFilter";
 import {FullInput} from "./task6/FullInput";
+import {Input} from "./task6/Input";
+import {Buttons} from "./task6/Buttons";
 
 export type topFootballsArray = {
     id: number
@@ -47,10 +49,12 @@ function App() {
         {club: 'Manchester City', players: 'De Breyne', number: 15},
     ]);
     let [message, setMessage] = useState([
-        {message: 'message1'},
-        {message: 'message2'},
-        {message: 'message3'},
-    ])
+        {message: 'Ronaldo-7'},
+        {message: 'Messi-10'},
+        {message: 'Neymar-11'},
+    ]);
+    let [title, setTitle] = useState('')
+    console.log(title)
     const addMessage=(title:string)=>{
         let newMessage={message: title};
         setMessage([newMessage, ...message])
@@ -81,6 +85,10 @@ function App() {
         alert(adress)
         alert(age)
     }
+    const callBackButtonHandler = () => {
+        addMessage(title)
+        setTitle('')
+    }
     return (
         <>
             <div className={'foot'}>
@@ -102,8 +110,9 @@ function App() {
             </div>
             <HookUseState/>
             <NewFilter clubs={currentClubs} onClickFilterHandler={onClickFilterHandler}/>
-            <div>
-                <FullInput addMessage={addMessage}/>
+            <div className={'footer'}>
+                <Input setTitle={setTitle} title={title}/>
+                <Buttons name={'+'} callBack={callBackButtonHandler}/>
                 {message.map((el,index)=>{
                     return (
                         <div key={index}>{el.message}</div>

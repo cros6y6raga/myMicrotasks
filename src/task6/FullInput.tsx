@@ -4,15 +4,17 @@ type addMessage={
 }
 export const FullInput = (props: addMessage) => {
     let [title, setTitle] = useState('')
+    console.log(title)
     const onChangeInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.currentTarget.value)
     }
     const onClickButtonHandler=()=>{
         props.addMessage(title)
+        setTitle('')
     }
     return (
         <div>
-            <input onChange={onChangeInputHandler}/>
+            <input value={title} onChange={onChangeInputHandler}/>
             <button onClick={onClickButtonHandler}>+</button>
         </div>
     );
